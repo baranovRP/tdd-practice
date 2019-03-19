@@ -1,6 +1,8 @@
 package com.baranov.tdd;
 
-public abstract class Money {
+import java.util.StringJoiner;
+
+public class Money {
 
     protected int amount;
     protected String currency;
@@ -18,15 +20,26 @@ public abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    abstract Money times(final int multiplier);
+    Money times(final int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
 
     String currency() {
         return currency;
     }
 
+    @Override
     public boolean equals(final Object obj) {
         Money money = (Money) obj;
         return amount == money.amount
-                && getClass().equals(money.getClass());
+                && currency.equalsIgnoreCase(money.currency());
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", this.getClass().getSimpleName() + "[", "]")
+                .add("amount = " + amount)
+                .add("currency = " + currency)
+                .toString();
     }
 }

@@ -1,21 +1,12 @@
 package com.baranov.tdd;
 
-public class Dollar extends Money{
+public class Dollar extends Money {
 
-    public Dollar(final int amount) {
-        this.amount = amount;
+    Dollar(final int amount, final String currency) {
+        super(amount, currency);
     }
 
     public Money times(final int multiplier) {
-        return new Dollar(amount * multiplier);
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public Dollar setAmount(final int amount) {
-        this.amount = amount;
-        return this;
+        return Money.dollar(amount * multiplier);
     }
 }

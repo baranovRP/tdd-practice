@@ -3,16 +3,26 @@ package com.baranov.tdd;
 public abstract class Money {
 
     protected int amount;
+    protected String currency;
 
-    public static Money dollar(final int amount) {
-        return new Dollar(amount);
+    public Money(final int amount, final String currency) {
+        this.amount = amount;
+        this.currency = currency;
     }
 
-    public static Money franc(final int amount) {
-        return new Franc(amount);
+    static Money dollar(final int amount) {
+        return new Dollar(amount, "USD");
+    }
+
+    static Money franc(final int amount) {
+        return new Franc(amount, "CHF");
     }
 
     abstract Money times(final int multiplier);
+
+    String currency() {
+        return currency;
+    }
 
     public boolean equals(final Object obj) {
         Money money = (Money) obj;

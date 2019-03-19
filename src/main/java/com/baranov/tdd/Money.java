@@ -2,7 +2,7 @@ package com.baranov.tdd;
 
 import java.util.StringJoiner;
 
-public class Money {
+public class Money implements Expression{
 
     protected int amount;
     protected String currency;
@@ -22,6 +22,10 @@ public class Money {
 
     Money times(final int multiplier) {
         return new Money(amount * multiplier, currency);
+    }
+
+    public Expression plus(final Money addend) {
+        return new Money(amount + addend.amount, currency);
     }
 
     String currency() {

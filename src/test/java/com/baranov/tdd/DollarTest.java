@@ -8,14 +8,15 @@ public class DollarTest {
 
     @Test
     public void testMultiplication() {
-        Dollar five = new Dollar(5);
+        Money five = Money.dollar(5);
         assertEquals(new Dollar(10), five.times(2));
         assertEquals(new Dollar(15), five.times(3));
     }
 
     @Test
     public void testEquality() {
-        assertTrue(new Dollar(5).equals(new Dollar(5)));
-        assertFalse(new Dollar(5).equals(new Dollar(6)));
+        assertEquals(Money.dollar(5), Money.dollar(5));
+        assertNotEquals(Money.dollar(5), Money.dollar(6));
+        assertNotEquals(Money.dollar(5), Money.franc(5));
     }
 }

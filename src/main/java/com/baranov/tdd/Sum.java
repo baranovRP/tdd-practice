@@ -2,16 +2,21 @@ package com.baranov.tdd;
 
 class Sum implements Expression {
 
-    Money augend;
-    Money addend;
+    Expression augend;
+    Expression addend;
 
-    Sum(final Money augend, final Money addend) {
+    Sum(final Expression augend, final Expression addend) {
         this.augend = augend;
         this.addend = addend;
     }
 
     public Money reduce(final Bank bank, final String to) {
-        int amount = augend.amount + addend.amount;
+        int amount = augend.reduce(bank, to).amount + addend.reduce(bank, to).amount;
         return new Money(amount, to);
+    }
+
+    @Override
+    public Expression plus(final Expression tenFrancs) {
+        return null;
     }
 }

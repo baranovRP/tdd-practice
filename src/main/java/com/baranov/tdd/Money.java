@@ -20,7 +20,8 @@ public class Money implements Expression {
         return new Money(amount, "CHF");
     }
 
-    Expression times(final int multiplier) {
+    @Override
+    public Expression times(final int multiplier) {
         return new Money(amount * multiplier, currency);
     }
 
@@ -29,6 +30,7 @@ public class Money implements Expression {
         return new Sum(this, addend);
     }
 
+    @Override
     public Money reduce(final Bank bank, final String to) {
         int rate = bank.rate(currency, to);
         return new Money(amount / rate, to);
